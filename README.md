@@ -1,6 +1,6 @@
 # Arduino-RFID
 
-Control users using RFID cards. Similar to [mifare-card-reader](https://github.com/lucastorri/mifare-card-reader), but for arduino and with more stuff.
+Identify users using RFID cards. Similar to [mifare-card-reader](https://github.com/lucastorri/mifare-card-reader), but for arduino and with more stuff.
 
 That's how it looks like: 
 
