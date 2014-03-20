@@ -4,7 +4,7 @@ Control users using RFID cards. Similar to [mifare-card-reader](https://github.c
 
 That's how it looks like: 
 
-![Image](../blob/master/docs/images/IMG_6918.jpg?raw=true)
+![Image](docs/images/IMG_6918.jpg?raw=true)
 
 ## Arduino Kit
 
