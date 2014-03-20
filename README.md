@@ -1,4 +1,12 @@
-# Arduino Kit
+# Arduino-RFID
+
+Control users using RFID cards. Similar to [mifare-card-reader](https://github.com/lucastorri/mifare-card-reader), but for arduino and with more stuff.
+
+That's how it looks like: 
+
+![Image](../blob/master/docs/images/IMG_6918.jpg?raw=true)
+
+## Arduino Kit
 
 <http://dx.com/p/rfid-stepper-motor-learning-kit-for-arduino-multicolored-247020#.Uylo0WRDvb0>
 
