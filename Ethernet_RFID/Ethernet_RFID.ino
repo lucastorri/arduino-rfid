@@ -96,12 +96,19 @@ void updateTemperature() {
   }
 }
 
-void readCard() { 
-  if (cardAvailable()) {    
+void readCard() {
+  static char uid[21];
+
+  if (cardAvailable(uid)) {    
     scheduler.cancel(updateTemperature);
     scheduler.cancel(readCard);
     
-    isUidValid() ? updateUI(GREEN) : updateUI(RED);
+    if (isUidValid(uid)) {
+      updateUI(GREEN);
+      strcpy(content.uid, uid);
+    } else {
+      updateUI(RED);
+    }
     
     scheduler.after(3000, normalBehaviour);
   }
@@ -135,8 +142,15 @@ boolean temperatureChanged() {
   return content.temperature != DHT11.getCelsius() || content.humidity != DHT11.getHumidity();
 }
 
-boolean cardAvailable() {
- return rfid.PICC_IsNewCardPresent() && rfid.PICC_ReadCardSerial();
+boolean cardAvailable(char *uid) {
+  boolean available = rfid.PICC_IsNewCardPresent() && rfid.PICC_ReadCardSerial();
+  if (available) {
+    for (int i = 0; i < rfid.uid.size; i++) {
+      sprintf(&uid[i * 2], "%02X", rfid.uid.uidByte[i]);
+    }
+    uid[(rfid.uid.size * 2) + 1] = '\0';
+  }
+  return available;
 }
 
 void replyRequests() {
@@ -163,14 +177,8 @@ void replyRequests() {
   }
 }
 
-boolean isUidValid() {
-  for (int i = 0; i < rfid.uid.size; i++) {
-    sprintf(&content.uid[i * 2], "%02X", rfid.uid.uidByte[i]);
-  }
-  content.uid[(rfid.uid.size * 2) + 1] = '\0';
-  boolean isValid = !strcmp(RFID_VALID, content.uid);
-  
-  return isValid;
+boolean isUidValid(char *uid) {
+  return !strcmp(RFID_VALID, uid);
 }
 
 void htmlResponse(EthernetClient *client) {
