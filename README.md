@@ -56,3 +56,11 @@ On the meanwhile the last known card uid read together with temperature/humidity
 #### Scheduler
 
 * <https://github.com/lucastorri/arduino-scheduler>
+
+
+### Installing Libraries
+
+```bash
+cp -r libraries/* /Users/lucastorri/Documents/Arduino/libraries
+```
+
