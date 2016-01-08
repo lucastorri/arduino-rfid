@@ -52,6 +52,9 @@ struct Content {
   char uid[21];
 };
 
+void dht11_int_handler();
+
+
 EthernetServer server(HTTP_SERVER_PORT);
 MFRC522 rfid(RFID_SS_PIN, RFID_RST_PIN);
 idDHT11 DHT11(DHT11_PIN, DHT11_INTERRUPTION, dht11_int_handler);
@@ -209,3 +212,4 @@ void htmlResponse(EthernetClient *client) {
 void dht11_int_handler() {
   DHT11.isrCallback();
 }
+
